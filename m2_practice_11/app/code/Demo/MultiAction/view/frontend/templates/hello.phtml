@@ -1,4 +1,21 @@
-<h1>Hello Module</h1> 
+<h1>MultiAction Module</h1> 
 <h2>
 	<?php echo $trungtq;?>
 </h2>
+
+<hr />
+
+<?php
+	$block->getCatalogSession()->setMyName('My name');
+	echo $block->getCatalogSession()->getMyName() . '<br />';
+
+	$block->getCheckoutSession()->setTestData('is');
+	echo $block->getCheckoutSession()->getTestData() . '<br />'; 
+ 
+	$block->getCheckoutSession()->setTestHello('Trung');
+	echo $block->getCheckoutSession()->getTestHello() . '<br />'; 
+
+	echo $block->getCatalogSession()->getMyName() . '<br />';
+	$block->getCatalogSession()->unsMyName();
+	echo $block->getCatalogSession()->getMyName() . '<br />'; // NULL
+?>
