@@ -10,7 +10,8 @@ class Observer implements ObserverInterface
     {
         echo "Customer LoggedIn<br />";
         $customer = $observer->getEvent()->getCustomer();
-        echo $customer->getName(); //Get customer name
+        echo $customer->getName() . "<br />";
+        echo $customer->getEmail();
         exit();
     }
 }
