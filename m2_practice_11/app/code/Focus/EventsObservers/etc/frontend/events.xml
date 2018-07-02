@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<event name="checkout_cart_product_add_after">
+        <observer name="phptrung_customer_custom_price" instance="Focus\EventsObservers\Observer\CustomPrice" />
+    </event>
     <event name="catalog_controller_product_view">
         <observer name="FocusProductData" instance="Focus\EventsObservers\Observer\Product\Data" />
     </event>
