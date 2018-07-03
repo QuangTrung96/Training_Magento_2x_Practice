@@ -1,0 +1,5 @@
+<config>
+    <type name="Magento\Theme\Block\Html\Header">
+        <plugin name="QTO_HelloWorld" type="QTO\HelloWorld\Plugin\ExamplePlugin" sortOrder="1" disabled="false"/>
+    </type>
+</config>
