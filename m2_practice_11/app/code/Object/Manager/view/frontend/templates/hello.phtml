@@ -1,6 +1,6 @@
 <?php
 	// get product by product sku 
-	$product = $block->loadMyProduct('MT12');
+	$product = $block->getBySku('MT12');
 	
 	echo $product->getEntityId() . '<br>';
 	echo $product->getName() . '<br>';
