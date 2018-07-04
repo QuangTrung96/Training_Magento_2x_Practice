@@ -11,8 +11,7 @@ class Index extends \Magento\Framework\App\Action\Action
 
 	public function execute()
 	{
-		echo $this->setTitle('Welcome - ');
-		echo $this->getTitle();
+		$this->setTitle('Welcome - ');
 	}
 
 	public function setTitle($title)

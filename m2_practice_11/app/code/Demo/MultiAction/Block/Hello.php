@@ -11,11 +11,13 @@ class Hello extends Template
     protected $_catalogSession;
     protected $_customerSession;
     protected $_checkoutSession;
+    protected $_productCollectionFactory;
 
     public function __construct(Template\Context $context,
                                 \Magento\Catalog\Model\Session $catalogSession,
                                 \Magento\Customer\Model\Session $customerSession,
                                 \Magento\Checkout\Model\Session $checkoutSession,
+                                \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
                                 Registry $coreRegistry,
                                 array $data = []) {
 
@@ -24,6 +26,7 @@ class Hello extends Template
         $this->_catalogSession = $catalogSession;
         $this->_customerSession = $customerSession;
         $this->_checkoutSession = $checkoutSession;
+        $this->_productCollectionFactory = $productCollectionFactory;
     }
 
     public function _prepareLayout() {
@@ -42,6 +45,14 @@ class Hello extends Template
 
     public function getCheckoutSession() {
         return $this->_checkoutSession;
+    }
+
+    public function getProductCollection()
+    {
+        $collection = $this->_productCollectionFactory->create();
+        $collection->addAttributeToSelect('*');
+        $collection->setPageSize(3); // fetching only 3 products
+        return $collection->getData();
     }
 
 }

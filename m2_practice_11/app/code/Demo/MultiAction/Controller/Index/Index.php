@@ -30,6 +30,7 @@ class Index extends \Magento\Framework\App\Action\Action
 		$action = $fullRequest[2];
 		echo "<h1>$module Module - $controller Controller - $action Action</h1>";
 		exit();*/
+		// var_dump(__METHOD__);
 		$this->_coreRegistry->register('tqt', 'Trịnh Quang Trung');
 		return $this->_pageFactory->create();
 	}
