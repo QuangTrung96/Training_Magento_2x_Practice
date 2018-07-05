@@ -36,7 +36,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 ->addColumn('author', Table::TYPE_TEXT, 255, ['nullable' => false], 'Author Comment')
                 ->addColumn('post_id', Table::TYPE_SMALLINT, null, ['nullable' => false], 'Post ID')
                 ->addColumn('creation_time', Table::TYPE_DATETIME, null, [], 'Creation Time')
-                ->setComment('Blog Posts');
+                ->setComment('Comment Table');
 
             $conn->createTable($table);   
         }

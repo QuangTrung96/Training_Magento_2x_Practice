@@ -9,7 +9,7 @@ class Post extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $this->_init('opentechiz_blog_post', 'post_id');
     }
 
-      protected function _beforeSave(\Magento\Framework\Model\AbstractModel $object)
+    protected function _beforeSave(\Magento\Framework\Model\AbstractModel $object)
     {
 
         if (!$this->isValidPostUrlKey($object)) {
