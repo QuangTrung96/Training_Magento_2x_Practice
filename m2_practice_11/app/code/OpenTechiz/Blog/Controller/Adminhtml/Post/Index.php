@@ -2,10 +2,10 @@
 
 namespace OpenTechiz\Blog\Controller\Adminhtml\Post;
 
-use Magento\Backend\App\Action\Context;
+use Magento\Backend\App\Action;
 use Magento\Framework\View\Result\PageFactory;
 
-class Index extends \Magento\Backend\App\Action
+class Index extends Action
 {
 
     /**
@@ -18,7 +18,7 @@ class Index extends \Magento\Backend\App\Action
      * @param PageFactory $resultPageFactory
      */
     public function __construct(
-        Context $context,
+        Action\Context $context,
         PageFactory $resultPageFactory
     ) {
         parent::__construct($context);
