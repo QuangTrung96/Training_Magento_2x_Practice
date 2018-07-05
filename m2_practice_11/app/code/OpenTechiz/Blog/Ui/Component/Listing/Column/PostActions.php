@@ -59,14 +59,15 @@ class PostActions extends Column
                 print_r($item);
                 die('123456');*/
                 $name = $this->getData('name');
-                if (isset($item['id'])) {
+                // die($name);
+                if (isset($item['post_id'])) {
                     $item[$name]['edit'] = [
-                        'href' => $this->urlBuilder->getUrl("blog/post/edit", ['id' => $item['id']]),
+                        'href' => $this->urlBuilder->getUrl("blog/post/edit", ['id' => $item['post_id']]),
                         'label' => __('Edit')
                     ];
-                    $title = $this->getEscaper()->escapeHtml($item['name']);
+                    $title = $this->getEscaper()->escapeHtml($item['title']);
                     $item[$name]['delete'] = [
-                        'href' => $this->urlBuilder->getUrl("blog/post/delete", ['id' => $item['id']]),
+                        'href' => $this->urlBuilder->getUrl("blog/post/delete", ['id' => $item['post_id']]),
                         'label' => __('Delete'),
                         'confirm' => [
                             'title' => __('Delete %1', $title),
