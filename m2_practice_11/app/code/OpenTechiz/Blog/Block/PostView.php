@@ -1,4 +1,5 @@
 <?php
+
 namespace OpenTechiz\Blog\Block;
 
 class PostView extends \Magento\Framework\View\Element\Template implements

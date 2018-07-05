@@ -1,4 +1,5 @@
 <?php
+
 namespace OpenTechiz\Blog\Model\ResourceModel;
 
 class Post extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb

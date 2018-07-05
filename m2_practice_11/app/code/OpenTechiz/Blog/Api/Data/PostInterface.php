@@ -1,4 +1,5 @@
 <?php
+
 namespace OpenTechiz\Blog\Api\Data;
 
 

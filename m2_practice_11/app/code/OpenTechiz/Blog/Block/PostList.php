@@ -1,4 +1,5 @@
 <?php
+
 namespace OpenTechiz\Blog\Block;
 
 use OpenTechiz\Blog\Api\Data\PostInterface;

@@ -1,6 +1,7 @@
 <?php
+
 namespace OpenTechiz\Blog\Block;
-//use OpenCert\Hello\Controller\Index\Index;
+
 class Helloworld extends \Magento\Framework\View\Element\Template
 {
 

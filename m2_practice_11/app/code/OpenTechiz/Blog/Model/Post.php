@@ -1,4 +1,6 @@
-<?php namespace OpenTechiz\Blog\Model;
+<?php 
+
+namespace OpenTechiz\Blog\Model;
 
 use OpenTechiz\Blog\Api\Data\PostInterface;
 use Magento\Framework\DataObject\IdentityInterface;

@@ -1,4 +1,5 @@
 <?php
+
 namespace OpenTechiz\Blog\Controller\Adminhtml\Post;
 
 use Magento\Backend\App\Action\Context;

@@ -1,4 +1,6 @@
-<?php namespace OpenTechiz\Blog\Helper;
+<?php 
+
+namespace OpenTechiz\Blog\Helper;
 
 use Magento\Framework\App\Action\Action;
 

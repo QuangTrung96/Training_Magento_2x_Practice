@@ -1,7 +1,8 @@
 <?php
+
 namespace OpenTechiz\Blog\Controller\View;
 
-use \Magento\Framework\App\Action\Action;
+use Magento\Framework\App\Action\Action;
 
 class Index extends Action
 {

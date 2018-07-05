@@ -1,4 +1,6 @@
-<?php namespace OpenTechiz\Blog\Setup;
+<?php 
+
+namespace OpenTechiz\Blog\Setup;
 
 use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
