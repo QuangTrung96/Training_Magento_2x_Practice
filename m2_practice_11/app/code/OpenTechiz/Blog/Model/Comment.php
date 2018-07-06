@@ -6,7 +6,7 @@ use Magento\Framework\Model\AbstractModel;
 use OpenTechiz\Blog\Api\Data\CommentInterface;
 use Magento\Framework\DataObject\IdentityInterface;
 
-class comment  extends AbstractModel implements CommentInterface, IdentityInterface
+class Comment  extends AbstractModel implements CommentInterface, IdentityInterface
 {
     
     const CACHE_TAG = 'blog_comment';

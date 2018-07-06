@@ -1,0 +1,7 @@
+<h1>Send Comment</h1>
+<form action="<?php echo $block->getBaseUrl();?><?php echo $block->getFormAction();?>" method="post">
+    <input name="content" type="text" />
+    <input name="post_id" type="hidden" value="<?php echo $block->getPostId();?>" />
+    <input name="creation_time" type="hidden" value="<?php echo $block->getCurrentDateTime();?>" />
+    <input type="submit" value="Send" />
+</form>

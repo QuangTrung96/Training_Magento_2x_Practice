@@ -8,10 +8,10 @@ interface CommentInterface
     /**
      * Constants for keys of data array. Identical to the name of the getter in snake case
      */
-    const COMMENT_ID       = 'post_id';
-    const CONTENT       = 'url_key';
-    const AUTHOR         = 'title';
-    const POST_ID       = 'content';
+    const COMMENT_ID       = 'comment_id';
+    const CONTENT       = 'content';
+    const AUTHOR         = 'author';
+    const POST_ID       = 'post_id';
     const CREATION_TIME = 'creation_time';
 
     /**

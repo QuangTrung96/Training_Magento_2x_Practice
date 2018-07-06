@@ -1,11 +1,11 @@
 <?php
 
-namespace OpenTechiz\Blog\Block;
+namespace OpenTechiz\Blog\Block\View;
 
 use OpenTechiz\Blog\Api\Data\CommentInterface;
 use OpenTechiz\Blog\Model\ResourceModel\Comment\Collection as CommentCollection;
 
-class CommentList extends \Magento\Framework\View\Element\Template
+class Comment extends \Magento\Framework\View\Element\Template
 {
 
     protected $_request;
