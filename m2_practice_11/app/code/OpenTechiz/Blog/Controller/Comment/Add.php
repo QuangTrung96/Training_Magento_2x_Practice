@@ -17,17 +17,22 @@ class Add extends Action
             $author        = 'Trung';
             $post_id       = $post['post_id'];
             $creation_time = $post['creation_time'];
+            $currentUrl = $this->_redirect->getRefererUrl();
+            if(trim($content) == "") {
+                $this->messageManager->addError(__("Please enter comment !."));
+            } else {
+                $comment = $this->_objectManager->create("OpenTechiz\Blog\Model\Comment");
+                $comment->addData([
+                    "content"       => $content,
+                    "author"        => $author,
+                    "post_id"       => $post_id,
+                    "creation_time" => $creation_time
 
-            $comment = $this->_objectManager->create("OpenTechiz\Blog\Model\Comment");
-            $comment->addData([
-                "content"       => $content,
-                "author"        => $author,
-                "post_id"       => $post_id,
-                "creation_time" => $creation_time
-
-            ])->save();
-            $this->messageManager->addSuccessMessage('Send Comment Success !');
-            return $this->_redirect("*/");
+                ])->save();
+                $this->messageManager->addSuccessMessage(__("Send Comment Success !"));
+            }
+            
+            return $this->_redirect($currentUrl);
         
         }
     }
