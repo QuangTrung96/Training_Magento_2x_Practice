@@ -80,6 +80,7 @@ class Router implements \Magento\Framework\App\RouterInterface
     {
         $url_key = trim($request->getPathInfo(), '/blog/');
         $url_key = rtrim($url_key, '/');
+        // die($request->getPathInfo());
         // die($url_key);
         /** @var \Ashsmith\Blog\Model\Post $post */
         $post = $this->_pageFactory->create();
