@@ -10,19 +10,21 @@ class Delete extends Action
 	{
 		$id = $this->getRequest()->getParam("id");
 		if($id) {
-			$model = $this->_objectManager->create("OpenTechiz\Blog\Model\Post");
-			$model->load($id);
-			if($model->getId()) {
+			try {
+				$model = $this->_objectManager->create("OpenTechiz\Blog\Model\Post");
+				$model->load($id);
 				$model->delete();
-				$this->messageManager->addSuccess(__("This has been delete"));
+				$this->messageManager->addSuccess(__("This post has been delete"));
+				return $this->_redirect("*/*/");
+
+			} catch(\Exception $e) {
+				$this->messageManager->addError($e->getMessage());
 				return $this->_redirect("*/*/");
 			}
-			$this->messageManager->addSuccess(__("This post no longer exists"));
-			return $this->_redirect("*/*/");
 
 		} 
 
-		$this->messageManager->addError(__("We can not find any id to delete"));
+		$this->messageManager->addError(__('We can\'t find a page to delete.'));
 		return $this->_redirect("*/*/");
 		
 	}
