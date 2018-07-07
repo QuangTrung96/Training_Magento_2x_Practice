@@ -15,7 +15,7 @@ class Save extends Action
     public function __construct(
         Action\Context $context,
         DateTime $datetime,
-        PostFactory $postFactory,
+        PostFactory $postFactory
     ) {
         parent::__construct($context);
         $this->_datetime = $datetime;
@@ -35,10 +35,13 @@ class Save extends Action
                $postModel->setUpdateTime($currentTime);
             }
 
-            $postModel->setUrlKey($formData["url_key"]);
-            $postModel->setTitle($formData["title"]);
-            $postModel->setContent($formData["content"]);
-            $postModel->setIsActive($formData["is_active"]);
+            // $postModel->setUrlKey($formData["url_key"]);
+            // $postModel->setTitle($formData["title"]);
+            // $postModel->setContent($formData["content"]);
+            // $postModel->setIsActive($formData["is_active"]);
+
+            $postModel->setData($formData);
+            
             if(!$postId) {
                 $postModel->setCreationTime($currentTime);
             }
