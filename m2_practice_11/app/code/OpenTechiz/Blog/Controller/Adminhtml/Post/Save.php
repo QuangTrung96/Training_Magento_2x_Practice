@@ -12,6 +12,8 @@ class Save extends Action
     protected $_datetime;
     protected $_postFactory;
 
+    const ADMIN_RESOURCE = 'OpenTechiz_Blog::save';
+
     public function __construct(
         Action\Context $context,
         DateTime $datetime,

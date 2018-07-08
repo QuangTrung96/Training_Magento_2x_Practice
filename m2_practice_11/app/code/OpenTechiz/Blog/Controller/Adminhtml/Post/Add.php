@@ -6,6 +6,7 @@ use Magento\Backend\App\Action;
 
 class Add extends Action
 {
+	const ADMIN_RESOURCE = 'OpenTechiz_Blog::save';
 	
     public function execute()
     {

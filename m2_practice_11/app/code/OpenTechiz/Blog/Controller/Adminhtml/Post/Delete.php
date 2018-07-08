@@ -6,6 +6,8 @@ use Magento\Backend\App\Action;
 
 class Delete extends Action
 {
+	const ADMIN_RESOURCE = 'OpenTechiz_Blog::post_delete';
+	
 	public function execute()
 	{
 		$id = $this->getRequest()->getParam("id");

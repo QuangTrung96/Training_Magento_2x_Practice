@@ -14,6 +14,8 @@ class Edit extends Action
     protected $_coreRegistry;
     protected $_resultPageFactory;
 
+    const ADMIN_RESOURCE = 'OpenTechiz_Blog::save';
+
     public function __construct(
         Action\Context $context,
         Registry $registry,
