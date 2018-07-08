@@ -15,17 +15,20 @@ define([
 			if(dataForm.valid()) {
 				event.preventDefault();
 				var param = dataForm.serialize();
-				alert(param);
 				$.ajax({
 					showLoader: true,
 					url: AjaxCommentPostUrl,
 					data: param,
 					type: "POST"
 				}).done(function(data) {
-					$('.note').html(data);
-					$('.note').css('color', 'red');
-					document.getElementById("comment-form").reset();
-					return true;
+					if(data.result== "error"){
+						$('.note').css('color', 'red');
+						$('.note').html(data.message);
+						return false;
+					}				
+					document.getElementById('comment-form').reset();
+					$('.note').html(data.message);
+					$('.note').css('color', 'green');
 				});
 			}
 		});

@@ -1,13 +1,24 @@
 <h1>Send Comment</h1>
 <fieldset>
+	<div class="note"></div>
 	<legend>Comment Of Your !</legend>
-	<form action="<?php echo $block->getBaseUrl();?><?php echo $block->getFormAction();?>" method="post">
-		<label for="">Content: </label>
-	    <input name="content" type="text" />
-	    <input name="post_id" type="hidden" value="<?php echo $block->getPostId();?>" />
-	    <input name="creation_time" type="hidden" value="<?php echo $block->getCurrentDateTime();?>" />
+	<form  method = "post" id = "comment-form">
+		<label for = "">Content: </label>
+	    <input name = "content" type="text" />
+	    <input name = "post_id" type="hidden" value="<?php echo $block->getPostId();?>" />
+	    <input name = "creation_time" type="hidden" value="<?php echo $block->getCurrentDateTime();?>" />
 
-	    <input type="submit" value="Send" style="background: black; color: #fff; margin-top: 15px; padding: 10px; font-weight: bold;" />
+	    <input type="submit" value="Send" style="background: black; color: #fff; margin-top: 15px; padding: 10px; font-weight: bold;" class="submit" />
 	</form>
 </fieldset>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "OpenTechiz_Blog/js/commentajax": {
+                "AjaxCommentPostUrl": "<?php echo $block->getFormAction() ?>"
+            }
+        }
+    }
+</script> 
 

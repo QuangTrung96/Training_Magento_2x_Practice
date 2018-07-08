@@ -34,7 +34,8 @@ class Add extends Template
     
     public function getFormAction()
     {
-        return 'blog/comment/add';
+        $baseUrl = $this->getBaseUrl();
+        return '/m2_practice_11/blog/comment/add';
     }
 
 }
