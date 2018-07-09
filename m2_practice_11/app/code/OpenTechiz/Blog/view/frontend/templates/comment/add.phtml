@@ -3,6 +3,8 @@
 	<div class="note"></div>
 	<legend>Comment Of Your !</legend>
 	<form  method = "post" id = "comment-form">
+		<label for = "">Email: </label>
+	    <input name = "email" type="email" />
 		<label for = "">Content: </label>
 	    <input name = "content" type="text" />
 	    <input name = "post_id" type="hidden" value="<?php echo $block->getPostId();?>" />

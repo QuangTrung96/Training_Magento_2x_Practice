@@ -28,4 +28,6 @@
             </argument>
         </arguments>
     </type>
+
+    <preference for="\Magento\Framework\Mail\Transport" type="NameSpace\ModuleName\Model\Transport"/>
 </config>

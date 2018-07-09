@@ -6,22 +6,32 @@ use Magento\Framework\App\Action\Action;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Store\Model\StoreManagerInterface;
 
 class Add extends Action
 {
     protected $resultPageFactory;
     protected $resultJsonFactory;
     protected $_inlineTranslation;
+    protected $_transportBuilder;
+    protected $storeManager;
 
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
+        \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
         \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
+        ScopeConfigInterface $scopeConfig,
         PageFactory $resultPageFactory,
-        JsonFactory $resultJsonFactory
+        JsonFactory $resultJsonFactory,
+        StoreManagerInterface $storeManager
     ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->resultJsonFactory = $resultJsonFactory;
         $this->_inlineTranslation = $inlineTranslation;
+        $this->_transportBuilder = $transportBuilder;
+        $this->scopeConfig = $scopeConfig;
+        $this->storeManager = $storeManager;
         parent::__construct($context);
     }
 
@@ -30,14 +40,22 @@ class Add extends Action
         $error = false;
         $message = '';
         $postData = (array) $this->getRequest()->getPostValue();
+
         if(!$postData)
         {
             $error = true;
             $message = "Your submission is not valid. Please try again!";
         }
+
         $this->_inlineTranslation->suspend();
         $postObject = new \Magento\Framework\DataObject();
         $postObject->setData($postData);
+
+        if(!\Zend_Validate::is(trim($postData['email']), 'NotEmpty'))
+        {
+            $error = true;
+            $message = "Email can not be empty!";
+        }
 
         if(!\Zend_Validate::is(trim($postData['content']), 'NotEmpty'))
         {
@@ -49,12 +67,61 @@ class Add extends Action
 
         if(!$error)
         {
-            $content       = $postData['content'];
             $author        = 'Trung';
-            $post_id       = $postData['post_id'];
-            $creation_time = $postData['creation_time'];
-            $currentUrl = $this->_redirect->getRefererUrl();
+            $postData['author'] = $author;
+            $email = $postData['email'];
+            $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
+            // die($storeScope);
+            // $transport = $this->_transportBuilder->setTemplateIdentifier(
+            //              $this->scopeConfig->getValue(
+            //                 'blog/general/template',
+            //                 $storeScope
+            //              )->setTemplateOptions(
+            //                 [
+            //                     'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
+            //                     'store' => $this->storeManager->getStore()->getStoreId(),
+            //                 ]
+            //             )->setTemplateVars(
+            //                 [
+            //                     'name' => $postData['author']
+            //                 ]
+            //             )->setFrom(
+            //                 $this->scopeConfig->getValue(
+            //                     'blog/general/sender_email',
+            //                     $storeScope
+            //                 )
+            //             )->addTo(
+            //                 $email
+            //             )->getTransport();
+
+            // $transport->sendMessage();
+
             
+            $transport = $this->_transportBuilder->setTemplateIdentifier(
+                $this->scopeConfig->getValue(
+                        'blog/general/template',
+                        $storeScope
+                    )
+                )->setTemplateOptions(
+                        [
+                            'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
+                            'store' => $this->storeManager->getStore()->getStoreId(),
+                        ]
+                    )->setTemplateVars(
+                        [
+                            'name' => $postData['author'],
+                        ]
+                    )->setFrom(
+                        [
+                            'email' => $this->scopeConfig->getValue('blog/general/sender_email', $storeScope)
+                        ]
+                    )->addTo(
+                        $email
+                    )->getTransport();
+
+            $transport->sendMessage();
+
+
             $comment = $this->_objectManager->create("OpenTechiz\Blog\Model\Comment");
             $comment->addData($postData)->save();
             $this->messageManager->addSuccessMessage(__("Send Comment Success !"));
@@ -114,5 +181,17 @@ class Add extends Action
         //     return $this->_redirect($currentUrl);
         
         // }
+    }
+
+    public function senderEmail($type = null, $storeId = null)
+    {
+        $sender ['email'] = $this->scopeConfig->getValue(
+                                self::SENDER_EMAIL,
+                                ScopeInterface::SCOPE_STORE,
+                                $storeId
+                            );
+        $sender['name'] = 'admin';
+
+        return $sender;
     }
 }
