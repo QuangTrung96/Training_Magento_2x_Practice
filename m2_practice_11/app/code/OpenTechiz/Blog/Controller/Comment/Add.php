@@ -16,6 +16,7 @@ class Add extends Action
     protected $_inlineTranslation;
     protected $_transportBuilder;
     protected $storeManager;
+    protected $scopeConfig;
 
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
