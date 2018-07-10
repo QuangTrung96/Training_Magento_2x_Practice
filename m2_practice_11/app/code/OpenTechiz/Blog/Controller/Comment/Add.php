@@ -113,13 +113,16 @@ class Add extends Action
                         ]
                     )->setFrom(
                         [
-                            'email' => $this->scopeConfig->getValue('blog/general/sender_email', $storeScope)
+                           "email" => 'trinhquangtrung1a@gmail.com',
+                           'name' => $postData['author']
                         ]
+                        // $this->scopeConfig->getValue(
+                        //     'blog/general/sender_email',
+                        //     \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+                        // )
                     )->addTo(
                         $email
-                    )->getTransport();
-
-            $transport->sendMessage();
+                    )->getTransport()->sendMessage();
 
 
             $comment = $this->_objectManager->create("OpenTechiz\Blog\Model\Comment");
