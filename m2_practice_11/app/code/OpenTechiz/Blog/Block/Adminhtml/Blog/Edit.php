@@ -9,7 +9,7 @@ class Edit extends Container
 	protected function _construct(){
 		$this->_blockGroup="OpenTechiz_Blog";
 		$this->_controller="adminhtml_blog";
-		$this->_objectId="post_id";
+		$this->_objectId="id";
 		parent::_construct();
 	}
 

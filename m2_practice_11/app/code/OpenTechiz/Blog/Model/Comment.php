@@ -11,6 +11,11 @@ class Comment  extends AbstractModel implements CommentInterface, IdentityInterf
     
     const CACHE_TAG = 'blog_comment';
 
+    const STATUS_PENDING = 0;
+    const STATUS_DENIED = 1;
+    const STATUS_APPROVE = 2;
+
+
     protected $_cacheTag = 'blog_comment';
 
     protected $_eventPrefix = 'blog_comment';
@@ -32,6 +37,11 @@ class Comment  extends AbstractModel implements CommentInterface, IdentityInterf
     protected function _construct()
     {
         $this->_init('OpenTechiz\Blog\Model\ResourceModel\Comment');
+    }
+
+    public function getAvailableStatuses()
+    {
+        return [self::STATUS_PENDING => __('Pending'), self::STATUS_DENIED => __('Denied'), self::STATUS_APPROVE => __('Approve')];
     }
 
     public function getIdentities()
@@ -62,6 +72,15 @@ class Comment  extends AbstractModel implements CommentInterface, IdentityInterf
         return $this->getData(self::CREATION_TIME);
     }
 
+    public function getEmail(){
+        return $this->getData(self::EMAIL);
+    }
+
+    public function getStatus()
+    {
+        return $this->getData(self::STATUS);
+    }
+
     public function setId($id)
     {
         return $this->setData(self::COMMENT_ID, $id);
@@ -85,6 +104,16 @@ class Comment  extends AbstractModel implements CommentInterface, IdentityInterf
     public function setCreationTime($creation_time)
     {
         return $this->setData(self::CREATION_TIME, $creation_time);
+    }
+
+    public function setEmail($email)
+    {
+        return $this->setData(self::EMAIL, $email);
+    }
+
+     public function setStatus($status)
+    {
+        return $this->setData(self::STATUS, $status);
     }
 
 }

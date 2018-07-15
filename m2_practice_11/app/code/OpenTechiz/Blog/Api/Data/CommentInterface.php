@@ -2,48 +2,37 @@
 
 namespace OpenTechiz\Blog\Api\Data;
 
-
 interface CommentInterface
 {
-    /**
-     * Constants for keys of data array. Identical to the name of the getter in snake case
-     */
+
     const COMMENT_ID       = 'comment_id';
     const CONTENT       = 'content';
     const AUTHOR         = 'author';
     const POST_ID       = 'post_id';
     const CREATION_TIME = 'creation_time';
+    const EMAIL = 'email';
+    const STATUS = 'status';
 
-    /**
-     * Get ID
-     *
-     * @return int|null
-     */
+
     public function getId();
 
-    /**
-     * Get content
-     *
-     * @return string
-     */
+   
     public function getContent();
 
-    /**
-     * Get author
-     *
-     * @return string|null
-     */
+   
     public function getAuthor();
 
-    /**
-     * Get post id
-     *
-     * @return int|null
-     */
+    
     public function getPostId();
     
 
     public function getCreationTime();
+
+
+    public function getEmail();
+
+
+    public function getStatus();
 
 
     public function setId($id);
@@ -59,5 +48,11 @@ interface CommentInterface
 
 
     public function setCreationTime($creationTime);
+
+
+    public function setEmail($email);
+
+
+    public function setStatus($status);
 
 }

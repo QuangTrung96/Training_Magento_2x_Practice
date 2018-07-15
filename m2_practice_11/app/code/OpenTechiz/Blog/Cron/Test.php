@@ -31,8 +31,10 @@ class Test {
         $from = date('Y-m-d h:i:s', $from); // 1 days before
         $comments = $this->_commentCollectionFactory
                 ->create()
-                ->addFieldToFilter('is_active', 0)
+                ->addFieldToFilter('status', 0)
                 ->addFieldToFilter('creation_time', ["lteq" => $from]);
+        // var_dump($comments->getData());
+        // die();
         $commentCount = $comments->count();
         // get admins list
         $admins = $this->_userCollection->create();
