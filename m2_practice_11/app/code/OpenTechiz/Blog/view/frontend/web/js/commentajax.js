@@ -1,14 +1,15 @@
 define([
 	"jquery",
-	"jquery/ui"
-], function($){
+	"jquery/ui",
+	"loadcomment"
+], function($, jqueryUi, loadcomment){
 	"use strict";
 
 	function main(config, element) {
 		var $element = $(element);
-		var AjaxCommentPostUrl = config.AjaxCommentPostUrl;
+		var AjaxCommentLoadUrl = config.AjaxCommentLoadUrl;
 
-		var dataForm = $('#comment-form');
+		var dataForm = $('#contact-form');
 		dataForm.mage('validation', {});
 
 		$(document).on('click', '.submit', function() {
@@ -17,7 +18,7 @@ define([
 				var param = dataForm.serialize();
 				$.ajax({
 					showLoader: true,
-					url: AjaxCommentPostUrl,
+					url: AjaxCommentLoadUrl,
 					data: param,
 					type: "POST"
 				}).done(function(data) {
@@ -26,7 +27,8 @@ define([
 						$('.note').html(data.message);
 						return false;
 					}				
-					document.getElementById('comment-form').reset();
+					document.getElementById('contact-form').reset();
+					loadcomment.loadComments(config);
 					$('.note').html(data.message);
 					$('.note').css('color', 'green');
 				});

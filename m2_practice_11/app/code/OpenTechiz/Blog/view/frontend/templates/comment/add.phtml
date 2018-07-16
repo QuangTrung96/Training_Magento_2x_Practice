@@ -1,8 +1,6 @@
-<h1>Send Comment</h1>
-<fieldset>
-	<div class="note"></div>
-	<legend>Comment Of Your !</legend>
-	<form  method = "post" id = "comment-form">
+<h1>Form Comment</h1>
+
+<form  method = "post" id = "contact-form">
 		<label for = "">Email: </label>
 	    <input name = "email" type="email" />
 		<label for = "">Content: </label>
@@ -12,15 +10,18 @@
 
 	    <input type="submit" value="Send" style="background: black; color: #fff; margin-top: 15px; padding: 10px; font-weight: bold;" class="submit" />
 	</form>
-</fieldset>
-
+<p class='note'></p>
+<?php 
+	$ajaxurl = $block->getFormAction();
+?>
 <script type="text/x-magento-init">
-    {
-        "*": {
-            "OpenTechiz_Blog/js/commentajax": {
-                "AjaxCommentPostUrl": "<?php echo $block->getFormAction() ?>"
+        {
+            "*": {
+                "OpenTechiz_Blog/js/commentajax": {
+                    "AjaxUrl": "<?php echo $block->getAjaxUrl() ?>",
+                    "AjaxCommentLoadUrl": "<?php echo $block->getFormAction() ?>",
+                    "AjaxPostId": "<?php echo $block->getPostId(); ?>"
+                }
             }
         }
-    }
-</script> 
-
+</script>
