@@ -12,6 +12,8 @@ interface CommentInterface
     const CREATION_TIME = 'creation_time';
     const EMAIL = 'email';
     const STATUS = 'status';
+    const USER_ID = 'user_id';
+
 
 
     public function getId();
@@ -54,5 +56,7 @@ interface CommentInterface
 
 
     public function setStatus($status);
+
+   
 
 }

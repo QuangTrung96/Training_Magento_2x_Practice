@@ -4,13 +4,13 @@
         <referenceContainer name="content">
             <block class="OpenTechiz\Blog\Block\View\Index" name="opentechiz_blog_view_index" template="OpenTechiz_Blog::view/index.phtml" />
             <block class="OpenTechiz\Blog\Block\View\Comment" name="opentechiz_blog_view_comment" template="OpenTechiz_Blog::view/comment.phtml" />
-            <block class="OpenTechiz\Blog\Block\Comment\Add" name="opentechiz_blog_view_comment"
+            <block class="OpenTechiz\Blog\Block\Comment\Add" name="opentechiz_blog_comment_add"
             template="OpenTechiz_Blog::comment/add.phtml"/>
-
-            <block class="OpenTechiz\Blog\Block\Comment\Add" name="comments.unpublic"
-                   template="OpenTechiz_Blog::comment/unpublic.phtml" />
-           <block class="OpenTechiz\Blog\Block\Comment\Load" name="comments.loadall"
+            <block class="OpenTechiz\Blog\Block\Comment\Load" name="opentechiz_blog_comment_load"
            template="OpenTechiz_Blog::comment/commentlist.phtml" />
+           <!--  <block class="OpenTechiz\Blog\Block\Comment\Add" name="comments.unpublic"
+                  template="OpenTechiz_Blog::comment/unpublic.phtml" /> -->
+           
         </referenceContainer>
     </body>
 </page>
