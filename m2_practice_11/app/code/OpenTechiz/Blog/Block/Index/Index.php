@@ -5,7 +5,8 @@ namespace OpenTechiz\Blog\Block\Index;
 use OpenTechiz\Blog\Api\Data\PostInterface;
 use OpenTechiz\Blog\Model\ResourceModel\Post\Collection as PostCollection;
 
-class Index extends \Magento\Framework\View\Element\Template
+class Index extends \Magento\Framework\View\Element\Template implements
+    \Magento\Framework\DataObject\IdentityInterface
 {
 
     protected $_postCollectionFactory;
@@ -25,6 +26,10 @@ class Index extends \Magento\Framework\View\Element\Template
         // makes our block nice and re-usable! We could
         // pass the 'posts' data to this block, with a collection
         // that has been filtered differently!
+        // $tags = $this->getCacheTags();
+        // print_r($tags);
+        // die('123');
+
         if (!$this->hasData('posts')) {
             $posts = $this->_postCollectionFactory
                 ->create()
@@ -36,5 +41,17 @@ class Index extends \Magento\Framework\View\Element\Template
             $this->setData('posts', $posts);
         }
         return $this->getData('posts');
+    }
+
+    public function getIdentities()
+    {
+        $identities = [];
+        $posts = $this->getPosts();
+        foreach ($posts as $post) {
+            $identities = array_merge($identities, $post->getIdentities());
+        }
+        $identities[] = \OpenTechiz\Blog\Model\Post::CACHE_TAG . '_' . 'blog_post';
+        return $identities;
+
     }
 }

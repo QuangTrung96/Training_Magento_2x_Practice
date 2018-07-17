@@ -18,7 +18,7 @@ class Post  extends \Magento\Framework\Model\AbstractModel implements PostInterf
     /**
      * CMS page cache tag
      */
-    const CACHE_TAG = 'blog_post';
+    const CACHE_TAG = 'openTechiz_blog_post';
 
     /**
      * @var string
